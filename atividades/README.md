@@ -22,4 +22,5 @@ novamente. Ou seja, cada exercício é independente do outro.
     * **Dica:** você pode usar o [mermaid.live](https://mermaid.live) para desenhar o diagrama. Depois você só
       copia-e-cola o código no arquivo [diagrama.md](diagrama.md). O Pycharm também possui um plugin com suporte ao
       mermaid, mas precisa ser baixado antes (este ícone aparecerá quando você abrir o arquivo [diagrama.md](diagrama.md)):
+    
       ![mermaid](../imagens/mermaid.png)
