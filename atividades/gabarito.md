@@ -70,12 +70,32 @@ from (
     group by p.nome
 )
 where numero_materias = 1
-
 ```
 
 6. Selecione todas as disciplinas que já tiveram mais que um professor atribuído.
+
+```sqlite
+select m.nome, count(p.nome) as numero_professores
+from materias as m
+inner join professores_para_materias ppm on m.id_materia = ppm.id_materia
+inner join professores p on ppm.id_professor = p.id_professor
+group by m.nome
+having numero_professores > 1
+```
+
 7. Selecione todas as disciplinas que já tiveram mais que um professor atribuído, e **ordene-as em ordem cronológica 
    inversa** (do professor que está dando a disciplina atualmente até o professor que deu a disciplina há mais tempo).
+
+```sqlite
+select m.nome, ppm.data_inicio, ppm.data_fim
+from materias as m
+inner join professores_para_materias ppm on m.id_materia = ppm.id_materia
+inner join professores p on ppm.id_professor = p.id_professor
+group by m.nome
+having count(m.nome) > 1
+order by ppm.data_inicio DESC
+```
+
 8. Selecione todas as disciplinas em que dois professores estão atribuídos à ela **ao mesmo tempo**.
 9. Insira o professor Zolin no banco de dados. Atribua a disciplina de `Sociologia` à ele.
 10. Remova todos os professores do banco de dados que não possuem nenhuma disciplina atribuída.
