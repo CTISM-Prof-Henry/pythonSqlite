@@ -97,16 +97,62 @@ order by ppm.data_inicio DESC
 ```
 
 8. Selecione todas as disciplinas em que dois professores estão atribuídos à ela **ao mesmo tempo**.
-
-
-
 9. Insira o professor Zolin no banco de dados. Atribua a disciplina de `Sociologia` à ele.
+
+```sqlite
+insert into professores (id_professor, nome) values (11, 'Zolin');
+insert into professores_para_materias (id_professor, id_materia) values (11, 4);
+```
+
 10. Remova todos os professores do banco de dados que não possuem nenhuma disciplina atribuída.
+
+```sqlite
+delete from professores
+where id_professor in (
+    select p.id_professor
+    from professores as p
+    left join professores_para_materias ppm on p.id_professor = ppm.id_professor
+    left join materias m on ppm.id_materia = m.id_materia
+    where m.nome is null
+)
+```
+
 11. Usando os comandos `INNER JOIN` e `UNION`, faça um full outer join entre as tabelas professores e materias.
+
+```sqlite
+select p.nome, m.nome
+from professores as p
+left join professores_para_materias ppm on p.id_professor = ppm.id_professor
+left join materias m on m.id_materia = ppm.id_materia
+union
+select p.nome, m.nome
+from materias as m
+left join professores_para_materias ppm on ppm.id_materia = m.id_materia
+left join professores as p on p.id_professor = ppm.id_professor
+```
+
 12. Usando a biblioteca [mermaid](https://mermaid-js.github.io/mermaid/#/), desenhe um diagrama de classes para a 
     estrutura do banco de dados disponibilizado. 
-    * **Dica:** você pode usar o [mermaid.live](https://mermaid.live) para desenhar o diagrama. Depois você só
-      copia-e-cola o código no arquivo [diagrama.md](../gabarito/diagrama.md). O Pycharm também possui um plugin com suporte ao
-      mermaid, mas precisa ser baixado antes (este ícone aparecerá quando você abrir o arquivo [diagrama.md](../gabarito/diagrama.md)):
     
-      ![mermaid](../imagens/mermaid.png)
+```mermaid
+classDiagram
+    class professores {
+        INTEGER id_professor PK
+        TEXT nome
+    }
+    
+    class materias {
+        INTEGER id_materia PK
+        TEXT nome
+    }
+    
+    class professores_para_materias {
+        INTEGER id_professor PK FK
+        INTEGER id_materia PK FK
+        TEXT data_inicio
+        TEXT data_fim 
+    }
+    
+    professores -- professores_para_materias : id_professor
+    materias -- professores_para_materias : id_materia
+```
