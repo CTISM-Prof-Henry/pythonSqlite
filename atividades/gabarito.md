@@ -47,6 +47,19 @@ where p.nome is null
 
 5. Selecione todas as disciplinas que possuem exatamente um professor atribuído.
 
+Opção 1:
+
+```sqlite
+select p.nome, count(m.nome) as numero_materias
+from materias as m
+inner join professores_para_materias ppm on m.id_materia = ppm.id_materia
+inner join professores p on ppm.id_professor = p.id_professor
+group by p.nome
+having numero_materias = 1
+```
+
+Opção 2:
+
 ```sqlite
 select *
 from (
