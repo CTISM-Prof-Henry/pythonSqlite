@@ -99,6 +99,8 @@ order by d_data_fim desc
    a data de fim de atuação do professor da disciplina, de todas as disciplinas que possuem dois professores atribuídos
    à ela **ao mesmo tempo**.
 
+Opção 1: sem criar tabela temporária (precisa refazer a busca três vezes)
+
 ```sql
 select p.nome, m.nome, date(ppm.data_inicio) as d_data_inicio, date(ppm.data_fim) as d_data_fim
 from professores as p
@@ -123,6 +125,34 @@ where m.nome in (
     group by m.nome, date(data_inicio), date(data_fim)
     having count(*) > 1
 )
+```
+
+Opção 2: criando tabela temporária (evita refazer a mesma consulta três vezes)
+
+```sql
+-- cria tabela temporária
+create temporary table if not exists temp as
+    select m.nome, date(data_inicio) as d_data_inicio, date(data_fim) as d_data_fim
+    from professores_para_materias ppm
+    inner join materias m on ppm.id_materia = m.id_materia
+    group by m.nome, date(data_inicio), date(data_fim)
+    having count(*) > 1;
+
+-- seleciona as informações requisitas que também se encontram na tabela temporária
+select p.nome, m.nome, date(ppm.data_inicio) as d_data_inicio, date(ppm.data_fim) as d_data_fim
+from professores as p
+inner join professores_para_materias as ppm on p.id_professor = ppm.id_professor
+inner join materias as m on ppm.id_materia = m.id_materia
+where m.nome in (
+    select nome from temp
+) and d_data_inicio in (
+    select d_data_inicio from temp
+) and d_data_fim in (
+    select d_data_fim from temp
+);
+
+-- opcional: deleta a tabela temporária
+drop table temp;
 ```
 
 9. Insira o professor Zolin no banco de dados. Atribua a disciplina de `Sociologia` à ele.
