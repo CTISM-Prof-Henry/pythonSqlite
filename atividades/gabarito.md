@@ -83,20 +83,22 @@ group by m.nome
 having numero_professores > 1
 ```
 
-7. Selecione todas as disciplinas que já tiveram mais que um professor atribuído, e **ordene-as em ordem cronológica 
+7. Selecione todos os professores que já deram aula de Princípios de Gestão, e **ordene-os em ordem cronológica 
    inversa** (do professor que está dando a disciplina atualmente até o professor que deu a disciplina há mais tempo).
 
 ```sqlite
-select m.nome, ppm.data_inicio, ppm.data_fim
-from materias as m
-inner join professores_para_materias ppm on m.id_materia = ppm.id_materia
-inner join professores p on ppm.id_professor = p.id_professor
-group by m.nome
-having count(m.nome) > 1
-order by ppm.data_inicio DESC
+select p.nome, date(ppm.data_inicio) as d_data_inicio, date(ppm.data_fim) as d_data_fim
+from professores as p
+inner join professores_para_materias ppm on p.id_professor = ppm.id_professor
+inner join materias m on m.id_materia = ppm.id_materia
+where m.nome = 'Princípios de Gestão'
+order by d_data_fim desc
 ```
 
 8. Selecione todas as disciplinas em que dois professores estão atribuídos à ela **ao mesmo tempo**.
+
+
+
 9. Insira o professor Zolin no banco de dados. Atribua a disciplina de `Sociologia` à ele.
 
 ```sqlite
