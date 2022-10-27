@@ -5,6 +5,8 @@ novamente. Ou seja, cada exercício é independente do outro.
 
 **Nota 2:** o script [main.py](main.py) possui a criação de tabelas e inserção de tuplas. 
 
+**Nota 3:** o gabarito está [aqui](gabarito.md).
+
 1. Selecione todas as disciplinas que o professor Fábio dá aula.
 2. Selecione todas as disciplinas que o professor Henry dá aula.
 3. Selecione todas as disciplinas que o professor Rafael dá aula.
