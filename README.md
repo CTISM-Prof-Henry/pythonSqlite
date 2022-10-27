@@ -4,10 +4,69 @@ Este repositório organiza o conhecimento necessário para trabalhar com sqlite 
 
 ## Sumário
 
-* [Sumário](#sumário)
+<!-- TOC -->
+* [Introdução](#introdução)
+* [Sintaxe](#sintaxe)
+* [Principais comandos](#principais-comandos)
 * [Configurando no Pycharm](#configurando-no-pycharm)
   * [Executando um comando SQL](#executando-um-comando-sql)
   * [Gerando o diagrama do banco de dados](#gerando-o-diagrama-do-banco-de-dados)
+* [Configurando pela linha de comando](#configurando-pela-linha-de-comando)
+<!-- TOC -->
+
+## Introdução
+
+SQL é como nos referimos genericamente à todas as linguagens de busca, empregadas em bancos de dados relacionais. sqlite
+é um **dialeto** SQL (ou seja, uma versão específica), que serve para determinados propósitos. sqlite, por exemplo, 
+costuma ser usado em bancos de dados pequenos, como de aplicações móveis, e sites que não possuem bancos de dados com 
+muitos registros.
+
+Para mais informações sobre SQL, consulte a [Wikipédia](https://pt.wikipedia.org/wiki/SQL).
+
+## Sintaxe
+
+A [documentação oficial](https://www.sqlite.org/lang.html) do sqlite fornece a documentação de diversos 
+comandos. Por exemplo, se quisermos criar uma nova tabela, iremos pesquisar o comando `create table`, e fazer o caminho
+de dados desejado, dependendo do problema que estamos tentando resolver:
+
+![sqlite_create_table_1](imagens/sqlite_create_table_1.png)
+
+Por exemplo, se seguirmos o caminho de dados abaixo, o seguinte comando SQL será retornado:
+
+![sqlite_create_table_2](imagens/sqlite_create_table_2.png)
+
+```sql
+create table memes (
+    id_meme integer not null primary key,
+    nome text not null
+)
+```
+
+Todavia, também é possível fazer o caminho 
+
+![sqlite_create_table_3](imagens/sqlite_create_table_3.png)
+
+Que retornará o comando
+
+```sql
+create table if not exists memes (
+    id_meme integer not null primary key,
+    nome text not null
+)
+```
+
+## Principais comandos
+
+**Nota:** esta não é uma lista extensiva. Veja na [documentação]((https://www.sqlite.org/lang.html)) todos os comandos 
+disponíveis.
+
+* [Criar tabelas](https://www.sqlite.org/lang_createtable.html)
+* [Deletar tabelas](https://www.sqlite.org/lang_droptable.html)
+* [Inserir tuplas](https://www.sqlite.org/lang_insert.html)
+* [Remover tuplas](https://www.sqlite.org/lang_delete.html)
+* [Atualizar tuplas](https://www.sqlite.org/lang_update.html)
+* [Selecionar tuplas](https://www.sqlite.org/lang_select.html)
+* [Funções de data e hora](https://www.sqlite.org/lang_datefunc.html)
 
 ## Configurando no Pycharm
 
