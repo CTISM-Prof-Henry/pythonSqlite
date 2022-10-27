@@ -25,7 +25,7 @@ inner join materias m on ppm.id_materia = m.id_materia
 where p.nome = 'Henry'
 ```
 
-3. Selecione todas as disciplinas que o professor Rafael dá aula.
+3. Selecione todas as disciplinas que o professor Rafael Pereira dá aula.
 
 ```sqlite
 select p.nome, m.nome
@@ -95,9 +95,35 @@ where m.nome = 'Princípios de Gestão'
 order by d_data_fim desc
 ```
 
-8. Selecione todas as disciplinas em que dois professores estão atribuídos à ela **ao mesmo tempo**.
+8. Selecione o nome do professor, o nome da disciplina, a data de início de atuação do professor na disciplina, 
+   a data de fim de atuação do professor da disciplina, de todas as disciplinas que possuem dois professores atribuídos
+   à ela **ao mesmo tempo**.
 
-
+```sqlite
+select p.nome, m.nome, date(ppm.data_inicio) as d_data_inicio, date(ppm.data_fim) as d_data_fim
+from professores as p
+inner join professores_para_materias as ppm on p.id_professor = ppm.id_professor
+inner join materias as m on ppm.id_materia = m.id_materia
+where m.nome in (
+    select m.nome
+    from professores_para_materias ppm
+    inner join materias m on ppm.id_materia = m.id_materia
+    group by m.nome, date(data_inicio), date(data_fim)
+    having count(*) > 1
+) and d_data_inicio in (
+    select date(data_inicio)
+    from professores_para_materias ppm
+    inner join materias m on ppm.id_materia = m.id_materia
+    group by m.nome, date(data_inicio), date(data_fim)
+    having count(*) > 1
+) and d_data_fim in (
+    select date(ppm.data_fim)
+    from professores_para_materias ppm
+    inner join materias m on ppm.id_materia = m.id_materia
+    group by m.nome, date(data_inicio), date(data_fim)
+    having count(*) > 1
+)
+```
 
 9. Insira o professor Zolin no banco de dados. Atribua a disciplina de `Sociologia` à ele.
 

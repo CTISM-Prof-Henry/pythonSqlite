@@ -15,7 +15,9 @@ novamente. Ou seja, cada exercício é independente do outro.
 6. Selecione todas as disciplinas que já tiveram mais que um professor atribuído.
 7. Selecione todos os professores que já deram aula de Princípios de Gestão, e **ordene-os em ordem cronológica 
    inversa** (do professor que está dando a disciplina atualmente até o professor que deu a disciplina há mais tempo).
-8. Selecione todas as disciplinas em que dois professores estão atribuídos à ela **ao mesmo tempo**.
+8. Selecione o nome do professor, o nome da disciplina, a data de início de atuação do professor na disciplina, 
+   a data de fim de atuação do professor da disciplina, de todas as disciplinas que possuem dois professores atribuídos
+   à ela **ao mesmo tempo**
 9. Insira o professor Zolin no banco de dados. Atribua a disciplina de `Sociologia` à ele.
 10. Remova todos os professores do banco de dados que não possuem nenhuma disciplina atribuída.
 11. Usando os comandos `INNER JOIN` e `UNION`, faça um full outer join entre as tabelas professores e materias.
