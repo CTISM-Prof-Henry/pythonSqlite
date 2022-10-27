@@ -17,7 +17,7 @@ where p.nome = 'Fábio'
 
 2. Selecione todas as disciplinas que o professor Henry dá aula.
 
-```sqlite
+```sql
 select p.nome, m.nome
 from professores as p
 inner join professores_para_materias as ppm on p.id_professor = ppm.id_professor
@@ -27,7 +27,7 @@ where p.nome = 'Henry'
 
 3. Selecione todas as disciplinas que o professor Rafael Pereira dá aula.
 
-```sqlite
+```sql
 select p.nome, m.nome
 from professores as p
 left join professores_para_materias as ppm on p.id_professor = ppm.id_professor
@@ -37,7 +37,7 @@ where p.nome = 'Rafael Pereira'
 
 4. Selecione todas as disciplinas que atualmente não possuem nenhum professor atribuído.
 
-```sqlite
+```sql
 select p.nome, m.nome
 from materias as m
 left join professores_para_materias ppm on m.id_materia = ppm.id_materia
@@ -49,7 +49,7 @@ where p.nome is null
 
 Opção 1:
 
-```sqlite
+```sql
 select p.nome, count(m.nome) as numero_materias
 from materias as m
 inner join professores_para_materias ppm on m.id_materia = ppm.id_materia
@@ -60,7 +60,7 @@ having numero_materias = 1
 
 Opção 2:
 
-```sqlite
+```sql
 select *
 from (
     select p.nome, count(m.nome) as numero_materias
@@ -74,7 +74,7 @@ where numero_materias = 1
 
 6. Selecione todas as disciplinas que já tiveram mais que um professor atribuído.
 
-```sqlite
+```sql
 select m.nome, count(p.nome) as numero_professores
 from materias as m
 inner join professores_para_materias ppm on m.id_materia = ppm.id_materia
@@ -86,7 +86,7 @@ having numero_professores > 1
 7. Selecione todos os professores que já deram aula de Princípios de Gestão, e **ordene-os em ordem cronológica 
    inversa** (do professor que está dando a disciplina atualmente até o professor que deu a disciplina há mais tempo).
 
-```sqlite
+```sql
 select p.nome, date(ppm.data_inicio) as d_data_inicio, date(ppm.data_fim) as d_data_fim
 from professores as p
 inner join professores_para_materias ppm on p.id_professor = ppm.id_professor
@@ -99,7 +99,7 @@ order by d_data_fim desc
    a data de fim de atuação do professor da disciplina, de todas as disciplinas que possuem dois professores atribuídos
    à ela **ao mesmo tempo**.
 
-```sqlite
+```sql
 select p.nome, m.nome, date(ppm.data_inicio) as d_data_inicio, date(ppm.data_fim) as d_data_fim
 from professores as p
 inner join professores_para_materias as ppm on p.id_professor = ppm.id_professor
@@ -127,14 +127,14 @@ where m.nome in (
 
 9. Insira o professor Zolin no banco de dados. Atribua a disciplina de `Sociologia` à ele.
 
-```sqlite
+```sql
 insert into professores (id_professor, nome) values (11, 'Zolin');
 insert into professores_para_materias (id_professor, id_materia) values (11, 4);
 ```
 
 10. Remova todos os professores do banco de dados que não possuem nenhuma disciplina atribuída.
 
-```sqlite
+```sql
 delete from professores
 where id_professor in (
     select p.id_professor
@@ -147,7 +147,7 @@ where id_professor in (
 
 11. Usando os comandos `INNER JOIN` e `UNION`, faça um full outer join entre as tabelas professores e materias.
 
-```sqlite
+```sql
 select p.nome, m.nome
 from professores as p
 left join professores_para_materias ppm on p.id_professor = ppm.id_professor
