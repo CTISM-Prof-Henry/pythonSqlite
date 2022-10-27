@@ -7,7 +7,7 @@ novamente. Ou seja, cada exercício é independente do outro.
 
 1. Selecione todas as disciplinas que o professor Fábio dá aula.
 
-```sqlite
+```sql
 select p.nome, m.nome
 from professores as p
 inner join professores_para_materias as ppm on p.id_professor = ppm.id_professor
