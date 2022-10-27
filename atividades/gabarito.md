@@ -30,9 +30,9 @@ where p.nome = 'Henry'
 ```sqlite
 select p.nome, m.nome
 from professores as p
-inner join professores_para_materias as ppm on p.id_professor = ppm.id_professor
-inner join materias m on ppm.id_materia = m.id_materia
-where p.nome = 'Rafael'
+left join professores_para_materias as ppm on p.id_professor = ppm.id_professor
+left join materias m on ppm.id_materia = m.id_materia
+where p.nome = 'Rafael Pereira'
 ```
 
 4. Selecione todas as disciplinas que atualmente não possuem nenhum professor atribuído.
@@ -97,6 +97,9 @@ order by ppm.data_inicio DESC
 ```
 
 8. Selecione todas as disciplinas em que dois professores estão atribuídos à ela **ao mesmo tempo**.
+
+
+
 9. Insira o professor Zolin no banco de dados. Atribua a disciplina de `Sociologia` à ele.
 10. Remova todos os professores do banco de dados que não possuem nenhuma disciplina atribuída.
 11. Usando os comandos `INNER JOIN` e `UNION`, faça um full outer join entre as tabelas professores e materias.
