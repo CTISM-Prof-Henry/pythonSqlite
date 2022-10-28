@@ -26,7 +26,7 @@ Para mais informações sobre SQL, consulte a [Wikipédia](https://pt.wikipedia.
 ## Sintaxe
 
 A [documentação oficial](https://www.sqlite.org/lang.html) do sqlite fornece a documentação de diversos 
-comandos. Por exemplo, se quisermos criar uma nova tabela, iremos pesquisar o comando `create table`, e fazer o caminho
+comandos. Por exemplo, se quisermos criar uma tabela, iremos pesquisar o comando `create table`, e fazer o caminho
 de dados desejado, dependendo do problema que estamos tentando resolver:
 
 ![sqlite_create_table_1](imagens/sqlite_create_table_1.png)
@@ -85,7 +85,7 @@ disponíveis.
 ### Executando um comando SQL
 
 Após fazer o passo-a-passo da seção [Configurando no Pycharm](#configurando-no-Pycharm), você pode digitar um comando
-SQL na janela console, e executá-lo clicando no botão verde ▶️ , ou então entrando com o comando `CTRL + Enter`.
+SQL na janela console, e executá-lo clicando no botão verde ▶️, ou então entrando com o comando `CTRL + Enter`.
 
 ### Gerando o diagrama do banco de dados
 

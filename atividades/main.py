@@ -31,6 +31,7 @@ def cria_tabelas(cur: sqlite3.Cursor) -> sqlite3.Cursor:
         CREATE TABLE IF NOT EXISTS materias (
             id_materia INTEGER NOT NULL,
             nome TEXT NOT NULL,
+            periodos INTEGER NOT NULL,
             PRIMARY KEY (id_materia)
         )
     ''')
@@ -39,6 +40,8 @@ def cria_tabelas(cur: sqlite3.Cursor) -> sqlite3.Cursor:
         CREATE TABLE IF NOT EXISTS professores (
             id_professor INTEGER NOT NULL,
             nome TEXT NOT NULL,
+            cabelo TEXT NOT NULL,
+            barba TEXT NOT NULL,
             PRIMARY KEY (id_professor)
         )
     ''')
@@ -66,23 +69,24 @@ def insere_tuplas(cur: sqlite3.Cursor) -> sqlite3.Cursor:
     :return: um cursor para o banco de dados.
     """
 
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (1, 'Fábio');''')
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (2, 'Henry');''')
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (3, 'Rafael Pereira');''')
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (4, 'Lairane');''')
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (5, 'Mário');''')
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (6, 'Gustavo');''')
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (7, 'Karina');''')
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (8, 'Roberto');''')
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (9, 'Priscila');''')
-    cur.execute('''INSERT INTO professores(id_professor, nome) VALUES (10, 'Shirley');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (1, 'Fábio', 'não', 'não');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (2, 'Henry', 'sim', 'sim');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (3, 'Rafael Pereira', 'sim', 'sim');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (4, 'Lairane', 'sim', 'não');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (5, 'Mário', 'sim', 'não');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (6, 'Gustavo', 'sim', 'sim');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (7, 'Karina', 'sim', 'não');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (8, 'Roberto', 'sim', 'não');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (9, 'Priscila', 'sim', 'não');''')
+    cur.execute('''INSERT INTO professores(id_professor, nome, cabelo, barba) VALUES (10, 'Shirley', 'sim', 'não');''')
 
-    cur.execute('''INSERT INTO materias(id_materia, nome) VALUES (1, 'Internet das Coisas');''')
-    cur.execute('''INSERT INTO materias(id_materia, nome) VALUES (2, 'Banco de Dados');''')
-    cur.execute('''INSERT INTO materias(id_materia, nome) VALUES (3, 'Desenvolvimento de Sistemas');''')
-    cur.execute('''INSERT INTO materias(id_materia, nome) VALUES (4, 'Sociologia')''')
-    cur.execute('''INSERT INTO materias(id_materia, nome) VALUES (5, 'Física')''')
-    cur.execute('''INSERT INTO materias(id_materia, nome) VALUES (6, 'Princípios de Gestão')''')
+    cur.execute('''INSERT INTO materias(id_materia, nome, periodos) VALUES (1, 'Internet das Coisas', 3);''')
+    cur.execute('''INSERT INTO materias(id_materia, nome, periodos) VALUES (2, 'Banco de Dados', 3);''')
+    cur.execute('''INSERT INTO materias(id_materia, nome, periodos) VALUES (3, 'Desenvolvimento de Sistemas', 3);''')
+    cur.execute('''INSERT INTO materias(id_materia, nome, periodos) VALUES (4, 'Sociologia', 1)''')
+    cur.execute('''INSERT INTO materias(id_materia, nome, periodos) VALUES (5, 'Física', 3)''')
+    cur.execute('''INSERT INTO materias(id_materia, nome, periodos) VALUES (6, 'Princípios de Gestão', 3)''')
+    cur.execute('''INSERT INTO materias(id_materia, nome, periodos) VALUES (7, 'História', 2)''')
 
     cur.execute('''INSERT INTO professores_para_materias(id_professor, id_materia) VALUES (1, 1);''')
     cur.execute('''INSERT INTO professores_para_materias(id_professor, id_materia) VALUES (1, 2);''')
@@ -111,20 +115,26 @@ def main(database_path: str = None):
     # isso facilita a vida na hora que formos re-gerar o banco, pois evita que tuplas
     # com ID repetido sejam inseridas novamente
     if os.path.exists(database_path):
+        print('removendo banco de dados antigo encontrado...')
         os.remove(database_path)
+        print('banco de dados antigo removido!')
 
     # cria o arquivo do banco se ele não existe
     # ou se conecta ao arquivo se existir
     with sqlite3.connect(database_path) as con:
+        print('banco de dados criado!')
         # pega um cursor para executar as operações
         # um cursor é uma conexão para o banco de dados (e.g. cria, deleta, insere, etc)
         cur = con.cursor()
 
         cur = cria_tabelas(cur)
+        print('tabelas criadas!')
         cur = insere_tuplas(cur)
+        print('tuplas inseridas!')
 
         # salva as modificações feitas no banco
         con.commit()
+        print('banco de dados salvo!')
 
 
 if __name__ == '__main__':
