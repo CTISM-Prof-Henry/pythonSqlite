@@ -5,6 +5,9 @@
 Fazer a configuração disponível na página inicial, seja para o [Pycharm](../README.md#configurando-no-Pycharm) ou
 para a [linha de comando](../README.md#configurando-pela-linha-de-comando).
 
+Será preciso também se [desconectar do banco de dados](../README.md#deletando-o-banco-de-dados) a cada nova atividade 
+realizada.
+
 ## Modo de resolver
 
 Com o banco de dados aberto (seja pelo Pycharm ou pela linha de comando), descubra o comando SQL que resolve o exercício.
@@ -23,7 +26,9 @@ Portanto, precisamos colar este comando no arquivo Python correspondente, e adap
 informações corretamente:
 
 ```python
-materias = cur.execute('''SELECT nome, periodos FROM materias;''').fetchall()
+materias = cur.execute('''
+    SELECT nome, periodos FROM materias;
+''').fetchall()
 
 for linha in materias:
     nome = linha[0]

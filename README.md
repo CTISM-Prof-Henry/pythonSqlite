@@ -13,6 +13,7 @@ Este repositório organiza o conhecimento necessário para trabalhar com sqlite 
   * [Gerando o diagrama do banco de dados](#gerando-o-diagrama-do-banco-de-dados)
   * [Deletando o banco de dados](#deletando-o-banco-de-dados)
 * [Configurando pela linha de comando](#configurando-pela-linha-de-comando)
+* [Exercícios](atividades/README.md)
 <!-- TOC -->
 
 ## Introdução
