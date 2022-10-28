@@ -11,6 +11,7 @@ Este repositório organiza o conhecimento necessário para trabalhar com sqlite 
 * [Configurando no Pycharm](#configurando-no-pycharm)
   * [Executando um comando SQL](#executando-um-comando-sql)
   * [Gerando o diagrama do banco de dados](#gerando-o-diagrama-do-banco-de-dados)
+  * [Deletando o banco de dados](#deletando-o-banco-de-dados)
 * [Configurando pela linha de comando](#configurando-pela-linha-de-comando)
 <!-- TOC -->
 
