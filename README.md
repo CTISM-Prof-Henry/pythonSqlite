@@ -82,6 +82,14 @@ disponíveis.
 6. Uma nova aba se abrirá no Pycharm, com o nome `console`. Também se abrirá uma janela lateral de nome `database`. Na
    aba `console` você executará comandos SQL, enquanto na janela `database` você pode ver a estrutura do banco de dados.
 
+   Janela database:
+   
+   ![sqlite_6.png](imagens/sqlite_6.png)
+
+   Aba console:
+
+   ![sqlite_7.png](imagens/sqlite_7.png)
+
 ### Executando um comando SQL
 
 Após fazer o passo-a-passo da seção [Configurando no Pycharm](#configurando-no-Pycharm), você pode digitar um comando
@@ -101,6 +109,11 @@ Abaixo é mostrado o diagrama do banco de dados disponibilizado nas [Atividades]
    
 A tabela `sqlite_master` é uma tabela de controle criada pelo sqlite para anotar metadados sobre o banco de dados (como 
 por exemplo o número de tabelas presentes). 
+
+### Deletando o banco de dados
+
+Se você quiser deletar o arquivo do banco de dados, será preciso se desconectar dele primeiro. Pressione o botão 
+<img src="imagens/sqlite_8.png"> na janela `database`.
 
 ## Configurando pela linha de comando
 
