@@ -45,8 +45,9 @@ novamente. Ou seja, cada exercício é independente do outro.
 
 ## Enunciados
 
-1. Usando a biblioteca [mermaid](https://mermaid-js.github.io/mermaid/#/), e a ferramenta online [mermaid.live],
-   desenhe um diagrama de classes para a estrutura do banco de dados disponibilizado.
+1. Usando a biblioteca [mermaid](https://mermaid-js.github.io/mermaid/#/), e a ferramenta online 
+   [mermaid.live](mermaid.live), desenhe um diagrama de classes para a estrutura do banco de dados 
+   disponibilizado.
 2. Selecione todas as disciplinas que o professor Fábio dá aula.
 3. Selecione todas as disciplinas que o professor Henry dá aula.
 4. Selecione todas as disciplinas que o professor Rafael Pereira dá aula.
