@@ -72,6 +72,9 @@ disponíveis.
 
 ## Configurando no Pycharm
 
+**Importante:** estas instruções foram elaboradas com base no Pycharm Ultimate. Alguns recursos
+podem não estar disponíveis na versão Community.
+
 1. Crie o banco de dados (por exemplo, executando o script [atividades/main.py](atividades/main.py))
 2. Clique duas vezes sobre o arquivo do banco de dados (por exemplo, `banco.db`)
 3. Talvez seja necessário baixar um plugin para conseguir manipular o banco de dados pelo Pycharm. Se for o caso, clique
